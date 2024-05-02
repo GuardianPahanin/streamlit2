@@ -59,3 +59,8 @@ if st.checkbox('Show Line Chart - All Data'):
 if st.checkbox('Show Line Chart - Filtered Data'):
     filtered_data_line = filtered_df.groupby('Year').size()
     st.line_chart(filtered_data_line)
+
+# Histogram - Distribution of Athlete Ages
+st.write('### Distribution of Athlete Ages')
+st.hist(filtered_df['Age'], bins=20, edgecolor='black')
+st.pyplot()
