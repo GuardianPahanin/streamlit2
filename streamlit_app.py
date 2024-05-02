@@ -36,16 +36,18 @@ season = st.sidebar.selectbox('Season', ['Summer', 'Winter'])
 sport = st.sidebar.selectbox('Sport', sports)
 medal = st.sidebar.selectbox('Medal', ['Gold', 'Silver', 'Bronze', 'NA'])
 
-filtered_df = df[(df['Sex'] == sex) & 
-                 (df['Age'] >= age[0]) & (df['Age'] <= age[1]) & 
-                 (df['Team'] == team) &
-                 (df['Year'] >= year[0]) & (df['Year'] <= year[1]) & 
-                 (df['Season'] == season) & 
-                 (df['Sport'] == sport) & 
-                 (df['Medal'] == medal)]
+# Filtered Data
+filtered_df = df[
+    (df['Sex'] == sex) &
+    (df['Age'] >= age[0]) & (df['Age'] <= age[1]) &
+    (df['Team'] == team) &
+    (df['Year'] >= year[0]) & (df['Year'] <= year[1]) &
+    (df['Season'] == season) &
+    (df['Sport'] == sport) &
+    (df['Medal'] == medal)
+]
 
 # Data Visualization
 st.write(f'Number of rows after filtering: {filtered_df.shape[0]}')
 if st.checkbox('Show Filtered Data'):
     st.write(filtered_df)
-
