@@ -22,22 +22,26 @@ st.write(f'The dataset contains {df.shape[0]} rows and {df.shape[1]} columns.')
 if st.checkbox('Show Data Preview'):
     st.write(df.head())
 
-# Data Filtering
+# Unique Teams and Sports
+teams = df['Team'].unique()
+sports = df['Sport'].unique()
+
 st.sidebar.title('Filter Data')
+# Data Filtering
 sex = st.sidebar.selectbox('Sex', ['M', 'F'])
 age = st.sidebar.slider('Age', min_value=10, max_value=100, value=(10, 100))
-team = st.sidebar.text_input('Team')
+team = st.sidebar.selectbox('Team', teams)
 year = st.sidebar.slider('Year', min_value=df['Year'].min(), max_value=df['Year'].max(), value=(df['Year'].min(), df['Year'].max()))
 season = st.sidebar.selectbox('Season', ['Summer', 'Winter'])
-sport = st.sidebar.text_input('Sport')
+sport = st.sidebar.selectbox('Sport', sports)
 medal = st.sidebar.selectbox('Medal', ['Gold', 'Silver', 'Bronze', 'NA'])
 
 filtered_df = df[(df['Sex'] == sex) & 
                  (df['Age'] >= age[0]) & (df['Age'] <= age[1]) & 
-                 (df['Team'].str.contains(team, case=False)) &
+                 (df['Team'] == team) &
                  (df['Year'] >= year[0]) & (df['Year'] <= year[1]) & 
                  (df['Season'] == season) & 
-                 (df['Sport'].str.contains(sport, case=False)) & 
+                 (df['Sport'] == sport) & 
                  (df['Medal'] == medal)]
 
 # Data Visualization
