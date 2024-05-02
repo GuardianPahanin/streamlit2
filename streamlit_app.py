@@ -63,5 +63,6 @@ if st.checkbox('Show Line Chart - Filtered Data'):
 
 # Histogram - Distribution of Athlete Ages
 st.write('### Distribution of Athlete Ages')
-plt.hist(filtered_df['Age'], bins=20, edgecolor='black')
-st.pyplot()
+fig, ax = plt.subplots()
+ax.hist(filtered_df['Age'], bins=20, edgecolor='black')
+st.pyplot(fig)
