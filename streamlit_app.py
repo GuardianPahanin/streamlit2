@@ -62,11 +62,13 @@ if st.checkbox('Show Line Chart - Filtered Data'):
     st.line_chart(filtered_data_line)
 
 # Histogram - Distribution of Athlete Ages
-st.write('### Distribution of Athlete Ages')
-filtered_age = filtered_df['Age'].dropna()  # Remove NaN values
-if not filtered_age.empty and len(filtered_age) > 1:
-    fig, ax = plt.subplots()
-    ax.hist(filtered_age, bins=20, edgecolor='black')
-    st.pyplot(fig)
-else:
-    st.write('Not enough data to display the histogram.')
+show_histogram = st.checkbox('Show Histogram - Athlete Ages')
+if show_histogram:
+    st.write('### Distribution of Athlete Ages')
+    filtered_age = filtered_df['Age'].dropna()  # Remove NaN values
+    if not filtered_age.empty and len(filtered_age) > 1:
+        fig, ax = plt.subplots()
+        ax.hist(filtered_age, bins=20, edgecolor='black')
+        st.pyplot(fig)
+    else:
+        st.write('Not enough data to display the histogram.')
