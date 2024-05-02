@@ -20,7 +20,7 @@ st.write('This app allows you to explore the Olympic athletes dataset.')
 st.write(f'The dataset contains {df.shape[0]} rows and {df.shape[1]} columns.')
 
 # Data Preview
-if st.button('Show Data Preview'):
+if st.checkbox('Show Data Preview'):
     st.write(df.head())
 
 # Unique Teams
@@ -48,16 +48,16 @@ filtered_df = filtered_df[(filtered_df['Season'] == season) &
 
 # Data Visualization
 st.write(f'Number of rows after filtering: {filtered_df.shape[0]}')
-if st.button('Show Filtered Data'):
+if st.checkbox('Show Filtered Data'):
     st.write(filtered_df)
 
 # Line Chart - All Data
-if st.button('Show Line Chart - All Data'):
+if st.checkbox('Show Line Chart - All Data'):
     all_data_line = df.groupby('Year').size()
     st.line_chart(all_data_line)
 
 # Line Chart - Filtered Data
-if st.button('Show Line Chart - Filtered Data'):
+if st.checkbox('Show Line Chart - Filtered Data'):
     filtered_data_line = filtered_df.groupby('Year').size()
     st.line_chart(filtered_data_line)
 
