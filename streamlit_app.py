@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 # Load the dataset
 @st.cache
@@ -49,3 +51,19 @@ st.write(f'Number of rows after filtering: {filtered_df.shape[0]}')
 if st.checkbox('Show Filtered Data'):
     st.write(filtered_df)
 
+# Heatmap
+if st.checkbox('Show Heatmap'):
+    plt.figure(figsize=(12, 8))
+    heatmap_data = filtered_df.groupby(['Team', 'Sport']).size().unstack()
+    sns.heatmap(heatmap_data, cmap='coolwarm', annot=True, fmt='g')
+    st.pyplot()
+
+# Line Chart
+if st.checkbox('Show Line Chart'):
+    plt.figure(figsize=(12, 6))
+    line_data = filtered_df.groupby('Year').size()
+    line_data.plot(kind='line', marker='o')
+    plt.xlabel('Year')
+    plt.ylabel('Number of Athletes')
+    plt.title('Number of Athletes Over Time')
+    st.pyplot()
