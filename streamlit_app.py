@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import matplotlib.pyplot as plt
 
 # Load the dataset
 @st.cache
@@ -51,3 +52,8 @@ filtered_df = df[
 st.write(f'Number of rows after filtering: {filtered_df.shape[0]}')
 if st.checkbox('Show Filtered Data'):
     st.write(filtered_df)
+
+# Line Chart - Number of Athletes Over Time
+st.write('### Number of Athletes Over Time')
+line_data = df.groupby('Year').size()
+st.line_chart(line_data)
