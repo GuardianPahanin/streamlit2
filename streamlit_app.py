@@ -28,7 +28,7 @@ teams = df['Team'].unique()
 
 st.sidebar.title('Filter Data')
 # Data Filtering
-team = st.sidebar.selectbox('Team', teams)
+team = st.sidebar.selectbox('Team', ['United States'] + teams.tolist(), index=teams.tolist().index('United States'))
 
 filtered_df = df[df['Team'] == team]
 
@@ -38,9 +38,9 @@ filtered_sports = filtered_df['Sport'].unique()
 filtered_medals = filtered_df['Medal'].unique()
 
 # Data Filtering based on the selected Team
-season = st.sidebar.selectbox('Season', filtered_seasons)
-sport = st.sidebar.selectbox('Sport', filtered_sports)
-medal = st.sidebar.selectbox('Medal', filtered_medals)
+season = st.sidebar.selectbox('Season', ['Summer', 'Winter'] + filtered_seasons.tolist(), index=filtered_seasons.tolist().index('Summer'))
+sport = st.sidebar.selectbox('Sport', ['Football'] + filtered_sports.tolist(), index=filtered_sports.tolist().index('Football'))
+medal = st.sidebar.selectbox('Medal', ['Gold', 'Silver', 'Bronze', 'NA'] + filtered_medals.tolist(), index=filtered_medals.tolist().index('Gold'))
 
 filtered_df = filtered_df[(filtered_df['Season'] == season) &
                           (filtered_df['Sport'] == sport) &
@@ -70,3 +70,4 @@ if not filtered_age.empty and len(filtered_age) > 1:
     st.pyplot(fig)
 else:
     st.write('Not enough data to display the histogram.')
+
