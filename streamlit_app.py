@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import seaborn as sns
+import matplotlib.pyplot as plt
 
 # Load the dataset
 @st.cache
@@ -54,6 +55,5 @@ if st.checkbox('Show Filtered Data'):
 if st.checkbox('Show Heatmap'):
     plt.figure(figsize=(12, 8))
     heatmap_data = filtered_df.groupby(['Team', 'Sport']).size().unstack()
-    heatmap_data_filled = heatmap_data.fillna(heatmap_data.mean())  # Fill NaN with mean
-    sns.heatmap(heatmap_data_filled, cmap='coolwarm', annot=True, fmt='g')
+    sns.heatmap(heatmap_data, cmap='coolwarm', annot=True, fmt='g')
     st.pyplot()
