@@ -54,12 +54,18 @@ if st.checkbox('Show Filtered Data'):
 # Line Chart - All Data
 if st.checkbox('Show Line Chart - All Data'):
     all_data_line = df.groupby('Year').size()
-    st.line_chart(all_data_line)
+    if len(all_data_line) > 1:
+        st.line_chart(all_data_line)
+    else:
+        st.write('Not enough data to display the line chart.')
 
 # Line Chart - Filtered Data
 if st.checkbox('Show Line Chart - Filtered Data'):
     filtered_data_line = filtered_df.groupby('Year').size()
-    st.line_chart(filtered_data_line)
+    if len(filtered_data_line) > 1:
+        st.line_chart(filtered_data_line)
+    else:
+        st.write('Not enough data to display the line chart.')
 
 # Histogram - Distribution of Athlete Ages
 show_histogram = st.checkbox('Show Histogram - Athlete Ages')
