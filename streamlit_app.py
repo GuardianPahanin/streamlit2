@@ -53,7 +53,12 @@ st.write(f'Number of rows after filtering: {filtered_df.shape[0]}')
 if st.checkbox('Show Filtered Data'):
     st.write(filtered_df)
 
-# Line Chart - Number of Athletes Over Time
-st.write('### Number of Athletes Over Time')
-line_data = df.groupby('Year').size()
-st.line_chart(line_data)
+# Line Chart - Number of Athletes Over Time (All Data)
+st.write('### Number of Athletes Over Time (All Data)')
+line_data_all = df.groupby('Year').size()
+st.line_chart(line_data_all)
+
+# Line Chart - Number of Athletes Over Time (Filtered Data)
+st.write('### Number of Athletes Over Time (Filtered Data)')
+line_data_filtered = filtered_df.groupby('Year').size()
+st.line_chart(line_data_filtered)
