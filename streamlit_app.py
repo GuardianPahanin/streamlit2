@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import matplotlib.pyplot as plt
 
 # Load the dataset
 @st.cache
@@ -62,5 +63,5 @@ if st.checkbox('Show Line Chart - Filtered Data'):
 
 # Histogram - Distribution of Athlete Ages
 st.write('### Distribution of Athlete Ages')
-st.hist(filtered_df['Age'], bins=20, edgecolor='black')
+plt.hist(filtered_df['Age'], bins=20, edgecolor='black')
 st.pyplot()
